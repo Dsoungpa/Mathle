@@ -11,6 +11,10 @@ public class Base_Mathle : MonoBehaviour
     // Array for the board
     int [,] board = new int[6,7];
 
+    private GameObject cell1, cell2, cell3;
+    private SpriteRenderer sprite1, sprite2, sprite3;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -124,23 +128,42 @@ public class Base_Mathle : MonoBehaviour
     }
 
     public void fillBoard(){
-        int num1 = Random.Range(0,8);
-        int num2 = Random.Range(0,8);
+        int num1 = Random.Range(0,7);
+        int num2 = Random.Range(0,7);
 
         while(num2 == num1){
-            num2 = Random.Range(0,8);
+            num2 = Random.Range(0,7);
         }
 
-        int num3 = Random.Range(0,8);
+        int num3 = Random.Range(0,7);
         while(num3 == num1 || num3 == num2){
-            num3 = Random.Range(0,8);
+            num3 = Random.Range(0,7);
         }
+
+        print(num1 + ", " + num2 + ", " + num3);
 
 
         for(int i = 0; i < 6; i++){
             board[i,num1] = sequence[num1];
+
+            print("R" + (i+1).ToString() + "C" + num1.ToString());
+            cell1 = GameObject.Find("R" + (i+1).ToString() + "C" + (num1+1).ToString());
+            sprite1 = cell1.GetComponent<SpriteRenderer>();
+            sprite1.color = new Color(0, 1, 0, 1);
+
             board[i,num2] = sequence[num2];
+
+            print("R" + (i+1).ToString() + "C" + num2.ToString());
+            cell2 = GameObject.Find("R" + (i+1).ToString() + "C" + (num2+1).ToString());
+            sprite2 = cell2.GetComponent<SpriteRenderer>();
+            sprite2.color = new Color(0, 1, 0, 1);
+
             board[i,num3] = sequence[num3];
+
+            print("R" + (i+1).ToString() + "C" + num3.ToString());
+            cell3 = GameObject.Find("R" + (i+1).ToString() + "C" + (num3+1).ToString());
+            sprite3 = cell3.GetComponent<SpriteRenderer>();
+            sprite3.color = new Color(0, 1, 0, 1);
         }
     }
 
